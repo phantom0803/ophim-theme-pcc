@@ -22,7 +22,9 @@ Route::group([
     Route::get(sprintf('/%s/{region}', config('ophim.routes.region', 'quoc-gia')), [ThemePccController::class, 'getMovieOfRegion'])->name('regions.movies.index');
     Route::get(sprintf('/%s/{type}', config('ophim.routes.types', 'danh-sach')), [ThemePccController::class, 'getMovieOfType'])->name('types.movies.index');
     Route::get(sprintf('/%s/{movie}', config('ophim.routes.movie', 'phim')), [ThemePccController::class, 'getMovieOverview'])->name('movies.show');
-    Route::get(sprintf('/%s/{movie}/{episode}', config('ophim.routes.movie', 'phim')), [ThemePccController::class, 'getEpisode'])->name('episodes.show');
-    Route::post(sprintf('/%s/{movie}/{episode}/report', config('ophim.routes.movie', 'phim')), [ThemePccController::class, 'reportEpisode'])->name('episodes.report');
+    Route::get(sprintf('/%s/{movie}/{episode}-{id}', config('ophim.routes.movie', 'phim')), [ThemePccController::class, 'getEpisode'])
+        ->where(['movie' => '.+', 'episode' => '.+', 'id' => '[0-9]+'])->name('episodes.show');
+    Route::post(sprintf('/%s/{movie}/{episode}-{id}/report', config('ophim.routes.movie', 'phim')), [ThemePccController::class, 'reportEpisode'])
+        ->where(['movie' => '.+', 'episode' => '.+', 'id' => '[0-9]+'])->name('episodes.report');
     Route::post(sprintf('/%s/{movie}/rate', config('ophim.routes.movie', 'phim')), [ThemePccController::class, 'rateMovie'])->name('movie.rating');
 });
