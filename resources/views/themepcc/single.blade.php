@@ -152,14 +152,14 @@
                 <div class="movie-subtitle">{{ $currentMovie->origin_name }} ({{ $currentMovie->publish_year }})</div>
                 <div class="movie-rating">
                     <div id="movies-rating-star"></div>
-                    ({{ number_format($currentMovie->rating_star ?? 0, 1) }}
+                    ({{$currentMovie->getRatingStar()}}
                     sao
                     /
-                    {{ $currentMovie->rating_count ?? 0 }} đánh giá)
+                    {{$currentMovie->getRatingCount()}} đánh giá)
                     <span class="hint" id="movies-rating-msg"></span>
                     <div class="rate-star">
                         <i class="sp-movie-icon-star-line"></i>
-                        <span class="avg_vote">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</span>
+                        <span class="avg_vote">{{$currentMovie->getRatingStar()}}</span>
                     </div>
                 </div>
             </div>
@@ -302,7 +302,7 @@
     <script>
         var rated = false;
         $('#movies-rating-star').raty({
-            score: {{ number_format($currentMovie->rating_star ?? 0, 1) }},
+            score: {{$currentMovie->getRatingStar()}},
             number: 10,
             numberMax: 10,
             hints: ['quá tệ', 'tệ', 'không hay', 'không hay lắm', 'bình thường', 'xem được', 'có vẻ hay', 'hay',
