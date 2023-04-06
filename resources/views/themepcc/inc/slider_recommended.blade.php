@@ -13,8 +13,7 @@
                             @foreach ($recommendations as $movie)
                                 <div class="item">
                                     <a class="inner" href="{{ $movie->getUrl() }}" title="{{$movie->name}}">
-                                        <img data-src="{{$movie->thumb_url}}"
-                                            alt="{{$movie->name}}" class="lazyload movie-thumb" />
+                                        <img data-src="{{$movie->getThumbUrl()}}" alt="{{$movie->name}}" class="lazyload movie-thumb" />
                                         <span class="thumb-icon"><i class="sp-movie-icon-play"></i> </span>
                                         <span class="overlay"></span>
                                         <div class="description">

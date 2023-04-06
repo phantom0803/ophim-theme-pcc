@@ -11,17 +11,6 @@
                     <meta itemProp="position" content="1" />
                 </a>
             </li>
-            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                <a class="" itemprop="item"
-                    href="/danh-sach/{{ $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo' }}"
-                    title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                    <span itemprop="name">
-                        {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}
-                    </span>
-                </a>
-                <meta itemprop="position" content="2">
-            </li>
-
             @foreach ($currentMovie->regions as $region)
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                     <a class="" itemprop="item" href="{{ $region->getUrl() }}" title="{{ $region->name }}">
@@ -29,7 +18,7 @@
                             {{ $region->name }}
                         </span>
                     </a>
-                    <meta itemprop="position" content="3">
+                    <meta itemprop="position" content="2">
                 </li>
             @endforeach
             @foreach ($currentMovie->categories as $category)
@@ -39,7 +28,7 @@
                             {{ $category->name }}
                         </span>
                     </a>
-                    <meta itemprop="position" content="3">
+                    <meta itemprop="position" content="2">
                 </li>
             @endforeach
             <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
@@ -48,7 +37,7 @@
                         {{ $currentMovie->name }}
                     </span>
                 </a>
-                <meta itemprop="position" content="4">
+                <meta itemprop="position" content="3">
             </li>
             <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="{{ url()->current() }}" title="Tập {{ $episode->name }}">
@@ -56,7 +45,7 @@
                         Tập {{ $episode->name }}
                     </span>
                 </a>
-                <meta itemprop="position" content="5">
+                <meta itemprop="position" content="4">
             </li>
         </ol>
     </div>
@@ -294,7 +283,7 @@
                     key: "{{ Setting::get('jwplayer_license') }}",
                     aspectratio: "16:9",
                     width: "100%",
-                    image: "{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}",
+                    image: "{{ $currentMovie->getPosterUrl() }}",
                     file: link,
                     playbackRateControls: true,
                     playbackRates: [0.25, 0.75, 1, 1.25],

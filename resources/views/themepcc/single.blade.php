@@ -11,16 +11,6 @@
                     <meta itemProp="position" content="1" />
                 </a>
             </li>
-            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                <a class="" itemprop="item"
-                    href="/danh-sach/{{ $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo' }}"
-                    title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                    <span itemprop="name">
-                        {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}
-                    </span>
-                </a>
-                <meta itemprop="position" content="2">
-            </li>
 
             @foreach ($currentMovie->regions as $region)
                 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
@@ -29,7 +19,7 @@
                             {{ $region->name }}
                         </span>
                     </a>
-                    <meta itemprop="position" content="3">
+                    <meta itemprop="position" content="2">
                 </li>
             @endforeach
             @foreach ($currentMovie->categories as $category)
@@ -39,7 +29,7 @@
                             {{ $category->name }}
                         </span>
                     </a>
-                    <meta itemprop="position" content="3">
+                    <meta itemprop="position" content="2">
                 </li>
             @endforeach
             <li class="" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
@@ -48,7 +38,7 @@
                         {{ $currentMovie->name }}
                     </span>
                 </a>
-                <meta itemprop="position" content="4">
+                <meta itemprop="position" content="3">
             </li>
         </ol>
     </div>
@@ -67,7 +57,7 @@
     @endif
     <div class="movie-banner">
         <div class="movie-banner-src lazyload"
-            style="background-image:url('{{ $currentMovie->poster_url ?? $currentMovie->thumb_url }}')"></div>
+            style="background-image:url('{{ $currentMovie->getPosterUrl() }}')"></div>
         <div class="icon-play">
             <a href="" title="{{ $currentMovie->name }}"></a>
         </div>
@@ -76,7 +66,7 @@
         <div id="before-watching"></div>
         <div class="column-300 pull-left">
             <div class="thumbnail mb-none">
-                <img class="info-poster-img" src="{{ $currentMovie->thumb_url }}" alt="{{ $currentMovie->name }}" />
+                <img class="info-poster-img" src="{{ $currentMovie->getThumbUrl() }}" alt="{{ $currentMovie->name }}" />
             </div>
             <div class="button-play">
                 @if ($currentMovie->trailer_url)
@@ -244,8 +234,7 @@
                                         <div class="trailer-image-wrap">
                                             <img class="lazyload lazy-loaded"
                                                 data-src="https://img.youtube.com/vi/{{ $trailer_id }}/sddefault.jpg"
-                                                alt="trailers"
-                                                src="https://img.youtube.com/vi/{{ $trailer_id }}/sddefault.jpg">
+                                                alt="trailers">
                                             <div class="icon-play"> <a href="javascript:void(0);" rel="nofollow"
                                                     data-id="{{ $trailer_id }}"> <i class="sp-movie-icon-play"></i>
                                                 </a> </div>

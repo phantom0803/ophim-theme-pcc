@@ -15,8 +15,7 @@
                                 <li class="list-group-item clearfix">
                                     <div class="thumbnail">
                                         <a href="{{ $movie->getUrl() }}" title="{{ $movie->name }}">
-                                            <img data-src="{{ $movie->thumb_url }}" class="lazyload"
-                                                alt="{{ $movie->name }}" />
+                                            <img data-src="{{ $movie->getThumbUrl() }}" class="lazyload" alt="{{ $movie->name }}" />
                                         </a>
                                     </div>
                                     <div class="meta-item">
