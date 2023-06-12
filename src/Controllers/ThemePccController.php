@@ -50,7 +50,7 @@ class ThemePccController
                 if (request('filter')['sort'] == 'view') {
                     return $movie->orderBy('view_total', 'desc');
                 }
-            })->paginate();
+            })->paginate(get_theme_option('per_page_limit'));
 
             return view('themes::themepcc.catalog', [
                 'data' => $data,
